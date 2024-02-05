@@ -52,7 +52,10 @@ fn first_word(s: &str) -> usize {
 
     let chars = s.chars();
 
-    let mut _user1: User = build_user(String::from("someusername123"), String::from("someone@example.com"));
+    let mut _user1: User = build_user(
+        String::from("someusername123"),
+        String::from("someone@example.com"),
+    );
 
     _user1.username.push_str("KEFTEDSDS!!!");
     _user1.sign_in_count += 1;
@@ -61,7 +64,10 @@ fn first_word(s: &str) -> usize {
         _user1.username, _user1.sign_in_count
     );
 
-    let _user2 = User{ email:String::from("asdk@msad.com"), .._user1};
+    let _user2 = User {
+        email: String::from("asdk@msad.com"),
+        .._user1
+    };
 
     //println!("{} HERE!!",_user1.email); //string was moved after _user2 assignment!!!!!
     //_user2.active = false; //immutable
@@ -91,18 +97,16 @@ struct User {
 }
 
 fn build_user(email: String, username: String) -> User {
+    struct Color(i32, i32, i32);
+    let c1: Color = Color(1, 2, 23);
 
-    struct Color(i32,i32,i32);
-    let c1: Color = Color(1,2,23);
-    
-    println!("The color is {}!",c1.0); 
+    println!("The color is {}!", c1.0);
 
-/* ttest commsad */
-    struct KeftesEqual{}
-    let _s1: KeftesEqual=KeftesEqual{};
+    /* ttest commsad */
+    struct KeftesEqual {}
+    let _s1: KeftesEqual = KeftesEqual {};
     // let s2=KeftesEqual;
     // //println!("Are they same: {}", s1);
- 
 
     User {
         active: true,
@@ -112,5 +116,16 @@ fn build_user(email: String, username: String) -> User {
     }
 }
 
+fn build_user2(email: String) -> User {
+    let usr1: User = User {
+        active: true,
+        username: String::from("keftes"),
+        email: email,
+        sign_in_count: 10,
+    };
 
-
+    User {
+        active: false,
+        ..usr1 //struct update syntax 
+    }
+}
